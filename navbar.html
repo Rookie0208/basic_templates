@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Navigation</title>
+</head>
+<style>
+    body {
+        margin: 0px;
+        background-color: black;
+    }
+    #menu {
+/* ***************** to center the whole navigation */
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        /* *********************** */
+    }
+    .menu-item {
+        color: white;
+        /* clamp is used to clamp the value b/w upper and lower bound. */
+        font-size: clamp(3rem, 8vw, 8rem);
+
+        display: block;
+        text-decoration: none;
+        padding: clamp(0.25rem, 0.5vw, 1rem) 0rem;  /*this is last value '0rem' is for left margin*/
+}
+    #menu-items {
+        margin-left: clamp(4rem, 20vw, 48rem);
+        z-index: 2;
+    }
+
+    #menu-items:hover > .menu-item {
+        opacity: 0.3;
+    }
+    #menu-items:hover > .menu-item:hover {
+        opacity: 1;
+    }
+
+    #menu-background-pattern {
+        height: 100vh;
+        width: 100vw;
+
+        background-image: radial-gradient(
+            rgba(225, 255, 255, 0.1) 9%, transparent 10%
+        );
+        background-position: 0% 0%;
+        background-size: 12vmin 12vmin;
+
+        position: absolute;     /* will make it behind the navbar */
+        left: 0px;
+        top: 0px;
+        z-index: 1;
+
+        transition: opacity 800ms ease, background-size 800ms ease;
+    }
+
+    #menu-items:hover ~ #menu-background-pattern {
+        background-size: 11vmin 11vmin;
+        opacity: 0.6;
+    }
+
+    #menu[data-active-index="0"] > #menu-background-pattern {
+        background-position: 0% -200%;
+    }
+    #menu[data-active-index="1"] > #menu-background-pattern {
+        background-position: 0% -175%;
+    }
+    #menu[data-active-index="2"] > #menu-background-pattern {
+        background-position: 0% -150%;
+    }
+    #menu[data-active-index="3"] > #menu-background-pattern {
+        background-position: 0% -100%;
+    }
+
+</style>
+<body>
+    <div id="menu">
+        <div id="menu-items" >
+            <a href="#" class="menu-item" data-active-index>Home</a>
+            <a href="#" class="menu-item" data-active-index>About</a>
+            <a href="#" class="menu-item" data-active-index>User</a>
+            <a href="#" class="menu-item" data-active-index>Contact-Us</a>
+        </div>
+        <div id="menu-background-pattern" ></div>
+    </div>
+</body>
+    <script>
+        const menu = document.getElementById("menu");
+        // console.log(menu.dataset.actveIndex);
+        // converting the menu items into the array, so that we can iterate over it.
+        Array.from(document.getElementsByClassName("menu-item")).forEach((item, index) => {
+            item.onmouseover = () => {
+                menu.dataset.activeIndex = index;
+            }
+        });
+    </script>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Animation</title>
+</head>
+<style>
+     * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #010718;
+    }
+
+
+    .preloader:before {
+        content: 'Loading';
+        position: absolute;
+        font-size: 12em;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.03);
+    }
+    .preloader.active {
+        transform: translateY(-100%);
+        transition: ease-in-out;
+        transition-delay: 1s;
+    }
+    .container {
+        width: 246px;
+        overflow: hidden;
+    }
+    .container .text {
+        position: relative;
+        /* color: #4070f4; */
+        font-size: 30px;
+        font-weight: 600;
+        color: white;
+    }
+    .text:before {
+        content: "";
+        position: absolute;
+        top: -1;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #010718;
+        border-left: 2px solid #4070f4;
+        animation: animate 0.5s steps(12) 8;
+    }
+    @keyframes animate {
+        40%, 60% {
+            left: calc(100% + 4px);
+        }
+        100% {
+            left: 10%;
+        }
+    }
+    .container:before {
+        content: '';
+        position: absolute;
+        /* font-size: 12em; */
+        /* font-weight: 900; */
+        /* text-transform: uppercase; */
+        color: rgba(255,255,255,0.03);
+    }
+    .hide {
+        opacity: 0;
+        transition: 1s;
+        pointer-events: none;
+    }
+    .container.active {
+        transform: translateY(-100%);
+        transition: ease-in-out;
+        transition-delay: 1s;
+    }
+</style>
+<body>
+    <div class="container">
+        <span class="text"></span>
+    </div>
+
+</body>
+<script>
+    const text = document.querySelector(".text");
+
+    const textLoad = () => {
+        setTimeout(() => {
+            text.textContent = "hello";
+        }, 0);
+        setTimeout(() => {
+            text.textContent = "bonjour";
+        }, 600);
+        setTimeout(() => {
+            text.textContent = "hola";
+        }, 1000);
+        setTimeout(() => {
+            text.textContent = "नमस्ते";
+        }, 1500);
+        setTimeout(() => {
+            text.textContent = "Hii";
+        }, 2000);
+        setTimeout(() => {
+            text.textContent = "Konnichiwa";
+        }, 2500);
+        setTimeout(() => {
+            text.textContent = "ola";
+        }, 3000);
+        setTimeout(() => {
+            text.textContent = "ciao";
+        }, 3500);
+
+        // var count = setInterval(function() {
+        //    if(text.textContent == "Hii") {
+        //         clearInterval(count);
+        //         $('.text').addClass('hide');
+        //         $('.preloader').addClass('active')
+        //     }
+        // },30)
+    }
+    textLoad();
+    setInterval(textLoad, 20000);
+</script>
+</html>

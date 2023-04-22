@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>typing Animation</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        color: white;
+        background-color: #2b3232;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container h1 {
+        /* position: fixed; */
+        font-size: 25px;
+        font-weight: 400;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1><span class="auto-type"></span></h1>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+    var typed = new Typed(".auto-type", {
+        strings: ["hello", "halo", "bonjour", "hola","नमस्ते"],
+        typeSpeed: 3,
+        backSpeed: 1,
+        loop: false
+    })
+</script>
+</html>

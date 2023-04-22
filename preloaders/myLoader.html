@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pre Loader</title>
+</head>
+<style>
+ @import url('https://fonts.googleapis.com/css?family=poppins:200,300,400,500,600,700&display=swap');
+    
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'poppins', 'sans-serif';
+    }
+
+    .big-box {
+        padding: 100px;
+        transition: all 1s;
+    }
+    .big-box h2 {
+        font-size: 4em;
+        color: #4b656d;
+    }
+    .big-box p {
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+    .preloader {
+        position: fixed;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background-color: #070707;
+        z-index: 1000;
+    }
+    .preloader:before {
+        content: '';
+        position: absolute;
+        /* font-size: 12em; */
+        /* font-weight: 900; */
+        /* text-transform: uppercase; */
+        /* color: rgba(255,255,255,0.03); */
+    }
+    .preloader.active {
+        transform: translateY(-100vh);
+        transition:cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s;
+        transition-delay: 1.5s;
+    }
+    .preloader .text {
+        position: relative;
+        /* color: #4070f4; */
+        font-size: 30px;
+        font-weight: 600;
+        color: white;
+    }
+    .text:before {
+        content: ""; 
+        /* position: absolute; */
+        left: 0;
+        top: -1;
+        height: 100%;
+        width: 100%;
+        background-color: #070707;
+        /* border-left: 2px solid #4070f4; */
+        animation: animate 0.1s 8;
+    }
+    @keyframes animate {
+        40%, 60% {
+            left: calc(100% + 4px);
+        }
+        100% {
+            left: 10%;
+        }
+    }
+    .hide {
+        opacity: 0;
+        transition: 1.5s;
+        pointer-events: none;
+    }
+</style>
+<body>
+    <div class="preloader">
+        <span class="text">hello</span>
+    </div>
+
+    <section class="big-box">
+        <h2> This is home page</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum at, voluptate ea hic sunt, quisquam, a
+            similique repellendus quo numquam vero amet? Blanditiis modi illo quibusdam numquam. Dolorum aut, cupiditate
+            natus iure consequatur exercitationem dicta nesciunt enim ipsa fuga aspernatur? Quo facere minus cupiditate
+            est dignissimos modi ratione eaque recusandae! Sed consectetur debitis nisi, quisquam, nesciunt tenetur
+            molestias sunt excepturi dignissimos placeat suscipit labore ratione repellat accusamus voluptates maiores
+            nam iusto quibusdam culpa, asperiores esse magnam minima. Saepe, ducimus fugit? Possimus maiores id nulla.
+            Sequi excepturi dicta reprehenderit perferendis molestias! Eos officia amet, temporibus itaque dolores
+            voluptatum vero accusantium beatae. Dolorem quam ex natus corporis at porro quos facilis expedita itaque!
+            Animi, voluptatibus a ducimus quae adipisci eligendi non soluta aliquam in necessitatibus corrupti officia
+            tenetur perferendis eius. Dolores, aut doloremque. Impedit illum numquam omnis quidem quam nemo corrupti
+            reiciendis similique minima? Animi nobis molestiae voluptates quas alias placeat laudantium accusantium
+            reprehenderit ut, molestias non eligendi doloribus repellendus. Explicabo fugiat ut dolor culpa quam, facere
+            tempora officiis sunt architecto recusandae velit, enim aliquam doloremque mollitia assumenda, aut magni
+            nobis omnis! Itaque sunt animi rem aperiam sapiente accusantium adipisci perferendis deserunt quidem, rerum
+            nemo nostrum accusamus eligendi aliquid excepturi! Nulla, iusto!
+        </p>
+    </section>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+
+     const text = document.querySelector(".text");
+
+const textLoad = () => {
+    setTimeout(() => {
+        text.textContent = "hello";
+    }, 0);
+    setTimeout(() => {
+        text.textContent = "bonjour";
+    }, 300);
+    setTimeout(() => {
+        text.textContent = "hola";
+    }, 500);
+    setTimeout(() => {
+        text.textContent = "नमस्ते";
+    }, 700);
+    setTimeout(() => {
+        text.textContent = "Hii";
+    }, 900);
+    setTimeout(() => {
+        text.textContent = "Konnichiwa";
+    }, 1100);
+    setTimeout(() => {
+        text.textContent = "ola";
+    }, 1300);
+    setTimeout(() => {
+        text.textContent = "ciao";
+    }, 1500);
+    function counter () {
+        var count = setInterval(function() {
+            if(text.textContent == "ciao") {
+                clearInterval(count);
+                $('.text').addClass('hide');
+                $('.preloader').addClass('active')
+            }
+        },60)
+    }
+    counter();
+}
+textLoad();
+setInterval(textLoad, 20000);
+</script>
+</html>
